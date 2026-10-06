@@ -57,7 +57,9 @@ describe('SauceDemo E2E Mocha Suite - 8 Parallel Tests', function() {
         await driver.findElement(By.id('password')).sendKeys('secret_sauce');
         await driver.findElement(By.id('login-button')).click();
         await driver.wait(until.elementLocated(By.className('product_sort_container')), 5000);
-        await driver.findElement(By.className('product_sort_container')).sendKeys('lohi');
+        const sortSelect = await driver.findElement(By.className('product_sort_container'));
+        await sortSelect.click();
+        await driver.findElement(By.css('option[value="lohi"]')).click();
         const firstItemPrice = await driver.findElement(By.className('inventory_item_price')).getText();
         assert.strictEqual(firstItemPrice, '$7.99');
     });
@@ -76,8 +78,10 @@ describe('SauceDemo E2E Mocha Suite - 8 Parallel Tests', function() {
         await driver.findElement(By.id('password')).sendKeys('secret_sauce');
         await driver.findElement(By.id('login-button')).click();
         await driver.wait(until.elementLocated(By.className('shopping_cart_link')), 5000);
+        await driver.sleep(1000); // wait for React hydration
         await driver.findElement(By.className('shopping_cart_link')).click();
         await driver.wait(until.elementLocated(By.className('title')), 5000);
+        await driver.sleep(1000); // wait for page transition
         const title = await driver.findElement(By.className('title')).getText();
         assert.strictEqual(title, 'Your Cart');
     });
@@ -87,9 +91,12 @@ describe('SauceDemo E2E Mocha Suite - 8 Parallel Tests', function() {
         await driver.findElement(By.id('password')).sendKeys('secret_sauce');
         await driver.findElement(By.id('login-button')).click();
         await driver.wait(until.elementLocated(By.id('react-burger-menu-btn')), 5000);
+        await driver.sleep(1000); // wait for React hydration
         await driver.findElement(By.id('react-burger-menu-btn')).click();
         await driver.wait(until.elementLocated(By.id('logout_sidebar_link')), 5000);
-        await driver.findElement(By.id('logout_sidebar_link')).click();
+        await driver.sleep(2000); // Wait for sidebar animation
+        const logoutBtn = await driver.findElement(By.id('logout_sidebar_link'));
+        await driver.executeScript("arguments[0].click();", logoutBtn); // JS click to bypass overlap
         await driver.wait(until.elementLocated(By.id('login-button')), 5000);
         const loginBtn = await driver.findElements(By.id('login-button'));
         assert.strictEqual(loginBtn.length, 1);
