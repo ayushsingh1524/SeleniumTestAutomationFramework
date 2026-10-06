@@ -1,0 +1,16 @@
+{
+  "name": "sauce-mocha-tests",
+  "version": "1.0.0",
+  "description": "A parallel 08-test Selenium suite in JavaScript using Mocha",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/**/*.js --timeout 10000 --parallel"
+  },
+  "author": "Ayush Singh",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
+    "selenium-webdriver": "^4.8.1"
+  }
+}

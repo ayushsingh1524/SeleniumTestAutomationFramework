@@ -1,0 +1,60 @@
+# ===============
+# .NET Core / .NET
+# ===============
+[Bb]in/
+[Oo]bj/
+.config/
+*.user
+*.userosscache
+*.sln.docstates
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ===============
+# Testing & Coverage
+# ===============
+# Standard dotnet test results
+TestResults/
+# Visual Studio Test Platform
+*.trx
+*.testsettings
+# Code coverage (Coverlet / OpenCover / etc.)
+coverage/
+*.cobertura.xml
+*.opencover.xml
+coverage.json
+lcov.info
+
+# ===============
+# macOS
+# ===============
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# ===============
+# Visual Studio Code
+# ===============
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# History and local config
+.history/
+.ionide/
+
+# ===============
+# Environment Variables
+# ===============
+.env
+appsettings.Development.json
+appsettings.Local.json
